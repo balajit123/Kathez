@@ -8,11 +8,11 @@ import java.util.Collection;
  */
 public interface SearchEngine {
 
-	Collection<Searcheable> search(SearchCriteria criteria) throws NoResultException;
+	Collection<Searcheable> search(SearchCriteria criteria) throws NoResultException, NoRepositoryException;
 	
-	Collection<Searcheable> searchAll() throws NoResultException;
+	Collection<Searcheable> searchAll() throws NoResultException, NoRepositoryException;
 	
-	Searcheable searchSingleResult(SearchCriteria criteria) throws NoResultException;
+	Searcheable searchSingleResult(SearchCriteria criteria) throws NoResultException, NoRepositoryException;
 	
-	boolean isRepoConfigured();
+	boolean isRepositoryConfigured();
 }
