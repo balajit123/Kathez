@@ -7,9 +7,8 @@ import java.io.Serializable;
 
 /**
  * @author Balaji
- *
+ * 
  */
-public interface Identifier extends Serializable{
-	            
-	
+public interface Identifier extends Serializable {
+
 }

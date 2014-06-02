@@ -1,9 +1,6 @@
-/**
- * 
- */
 package com.kathez.playground.searchengine;
 
-import java.util.List;
+import java.util.Collection;
 
 /**
  * @author Balaji
@@ -11,9 +8,11 @@ import java.util.List;
  */
 public interface SearchEngine {
 
-	Searcheable search(SearchCriteria criteria);
+	Collection<Searcheable> search(SearchCriteria criteria) throws NoResultException;
 	
-	List<Searcheable> searchAll();
+	Collection<Searcheable> searchAll() throws NoResultException;
 	
-	List<Searcheable> searchMany(SearchCriteria criteria);
+	Searcheable searchSingleResult(SearchCriteria criteria) throws NoResultException;
+	
+	boolean isRepoConfigured();
 }
