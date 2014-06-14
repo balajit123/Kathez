@@ -14,17 +14,17 @@ import org.junit.Test;
  */
 public class DefaultSearchEngineTest {
 
-	private DefaultSearchEngine defaultSearchEngine;
+	private SearchEngine searchEngine;
 
 	@Before
 	public void before() {
-		defaultSearchEngine = new DefaultSearchEngine();
+		searchEngine = BuildDirector.buildSearchEngine(new DefaultSearchEngineBuilder());
 	}
 
 	@Test
 	public void shouldReturnResult() {
 		SearchCriteria criteria = new NameCriteria("Franklin");
-		Collection<Searcheable> result = defaultSearchEngine.search(criteria);
+		Collection<Searcheable> result = searchEngine.search(criteria);
 		assertNotNull(result);
 		for (Searcheable item : result) {
 			assertTrue(item instanceof Person);
@@ -34,7 +34,18 @@ public class DefaultSearchEngineTest {
 	@Test(expected = NoResultException.class)
 	public void shouldThrowNoResultException() {
 		SearchCriteria criteria = new NameCriteria("Invalid Name");
-		defaultSearchEngine.search(criteria);
+		searchEngine.search(criteria);
 	}
-
+	
+	@Test
+	public void searchAllShouldReturnResult(){
+		Collection<Searcheable> result = searchEngine.searchAll();
+		assertNotNull(result);
+	}
+	
+	@Test
+	public void searchSingleResultShouldReturnList(){
+		Searcheable result = searchEngine.searchSingleResult(new NameCriteria("Balaji"));
+		assertNotNull(result);
+	}
 }

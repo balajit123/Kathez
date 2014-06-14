@@ -14,11 +14,11 @@ public class DefaultRepository {
 
 	private static class RecordSet {
 		
-		Collection<Person> records = null;
+		Collection<Searcheable> records = null;
 		
 		public RecordSet() {
 			super();
-			records = new ArrayList<Person>();
+			records = new ArrayList<Searcheable>();
 			records.add(new Person(new PersonIdentifier("emailId1"),"Balaji"));
 			records.add(new Person(new PersonIdentifier("emailId2"),"Franklin"));
 			records.add(new Person(new PersonIdentifier("emailId3"),"Paul"));
@@ -44,12 +44,32 @@ public class DefaultRepository {
 
 	private Collection<Searcheable> findNames(NameCriteria criteria) {
 		Collection<Searcheable> result = new ArrayList<Searcheable>();
-		for(Person person : recordSet.records){
-			if(person.getName().equals(criteria.getNameToFind())){
-				result.add(person);
+		for(Searcheable searcheable : recordSet.records){
+			if(searcheable instanceof Person && ((Person)searcheable).getName().equals(criteria.getNameToFind())){
+				result.add(searcheable);
 			}
 		}
 		return result;
+	}
+
+	public Collection<Searcheable> getAllRecords() {
+		return recordSet.records;
+	}
+
+	public Searcheable findSingleRecord(SearchCriteria criteria) {
+		if(criteria instanceof NameCriteria){
+			return findName((NameCriteria) criteria);
+		}
+		return null;
+	}
+
+	private Searcheable findName(NameCriteria criteria) {
+		for(Searcheable searcheable : recordSet.records){
+			if(searcheable instanceof Person && ((Person)searcheable).getName().equals(criteria.getNameToFind())){
+				return searcheable;
+			}
+		}
+		return null;
 	}
 
 }

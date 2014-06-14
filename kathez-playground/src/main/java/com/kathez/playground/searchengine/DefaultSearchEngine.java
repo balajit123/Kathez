@@ -3,6 +3,8 @@ package com.kathez.playground.searchengine;
 import java.util.Collection;
 
 /**
+ * A dummy implementation of the search engine
+ * 
  * @author Balaji
  *
  */
@@ -45,8 +47,7 @@ public class DefaultSearchEngine extends AbstractSingleRepoSearchEngine {
 	 */
 	public Collection<Searcheable> searchAll() throws NoResultException,
 			NoRepositoryException {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.getAllRecords();
 	}
 
 	/* (non-Javadoc)
@@ -54,13 +55,16 @@ public class DefaultSearchEngine extends AbstractSingleRepoSearchEngine {
 	 */
 	public Searcheable searchSingleResult(SearchCriteria criteria)
 			throws NoResultException, NoRepositoryException {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findSingleRecord(criteria);
 	}
 
 	@Override
 	protected DefaultRepository getRepository() {
 		return this.repository;
+	}
+
+	public void setRepository(DefaultRepository repository) {
+		this.repository = repository;
 	}
 
 }
