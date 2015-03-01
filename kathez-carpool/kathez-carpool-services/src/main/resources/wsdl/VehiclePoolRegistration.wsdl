@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="VehiclePoolRegistrationService"
+	targetNamespace="http://www.kathez.com/VehiclePoolRegistration.wsdl"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.kathez.com/VehiclePoolRegistration.wsdl"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:routeReg="http://www.kathez.com/RouteRegistration">
+	<types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://www.kathez.com/RouteRegistration"
+				schemaLocation="../schema/RouteRegistration.xsd">
+			</xsd:import>
+		</xsd:schema>
+	</types>
+	<message name="RegistrationRequest">
+		<part name="routeRegistrationReq" element="routeReg:RouteRegistration" />
+	</message>
+
+	<message name="RegistrationResponse">
+		<part name="routeRegistrationRes" element="routeReg:RouteRegistration"/>
+	</message>
+	
+	<message name="RegistrationFault">
+		<part name="routeRegistrationFault" type="xsd:string"/>
+	</message>
+
+	<portType name="RegistrationPortType">
+		<operation name="register">
+			<input message="tns:RegistrationRequest" />
+			<output message="tns:RegistrationResponse" />
+			<fault name="RegistrationFault" message="tns:RegistrationFault"></fault>
+		</operation>
+	</portType>
+
+	<binding name="RegistrationServiceBinding" type="tns:RegistrationPortType">
+		<soap:binding style="rpc"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<operation name="register">
+			<soap:operation soapAction="register" />
+			<input>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="urn:kathez:vehiclepoolregistrationservice" use="encoded" />
+			</input>
+			<output>
+				<soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="urn:kathez:vehiclepoolregistrationservice" use="literal" />
+			</output>
+			<fault name="RegistrationFault">
+				<soap:fault name="RegistrationFault" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+					namespace="urn:kathez:vehiclepoolregistrationservice" use="literal"/>
+			</fault>
+		</operation>
+	</binding>
+
+	<service name="VehiclePoolRegistrationService">
+		<port name="RegistrationPort" binding="tns:RegistrationServiceBinding">
+			<soap:address location="http://www.kathez.com/VehicleRegistrationService" />
+		</port>
+	</service>
+</definitions>

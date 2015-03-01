@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:vhl="http://www.kathez.com/Vehicle"
+        xmlns:commons="http://www.kathez.com/Commons"
+        xmlns:usr="http://www.kathez.com/User"
+        targetNamespace="http://www.kathez.com/Vehicle">
+
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+    <import namespace="http://www.kathez.com/User" schemaLocation="User.xsd"/>
+
+    <element name="Vehicle" type="vhl:VehicleType"/>
+    <complexType name="VehicleType">
+        <sequence>
+            <element type="string" name="regNumber" minOccurs="0"/>
+            <element type="commons:vehicleType" name="vehicleType" />
+            <element ref="usr:User" />
+        </sequence>
+    </complexType>
+</schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:route="http://www.kathez.com/Route"
+        targetNamespace="http://www.kathez.com/Route">
+
+    <element name="Route" type="route:RouteType"/>
+    <complexType name="RouteType">
+        <sequence>
+            <element type="string" name="name"/>
+            <element type="string" name="from"/>
+            <element type="string" name="to"/>
+            <element type="string" name="via" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute name="id" type="unsignedLong" form="qualified"/>
+    </complexType>
+</schema>

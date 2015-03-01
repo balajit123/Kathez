@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:routeReg="http://www.kathez.com/RouteRegistration"
+        xmlns:vhl="http://www.kathez.com/Vehicle"
+        xmlns:commons="http://www.kathez.com/Commons"
+        xmlns:usr="http://www.kathez.com/User"
+        xmlns:route="http://www.kathez.com/Route"
+        xmlns:singleTrip="http://www.kathez.com/SingleTrip"
+        xmlns:regularTrip="http://www.kathez.com/RegularTrip"
+        targetNamespace="http://www.kathez.com/RouteRegistration">
+
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+    <import namespace="http://www.kathez.com/User" schemaLocation="User.xsd"/>
+    <import namespace="http://www.kathez.com/Vehicle" schemaLocation="Vehicle.xsd"/>
+    <import namespace="http://www.kathez.com/Route" schemaLocation="Route.xsd"/>
+    <import namespace="http://www.kathez.com/SingleTrip" schemaLocation="SingleTrip.xsd"/>
+    <import namespace="http://www.kathez.com/RegularTrip" schemaLocation="RegularTrip.xsd"/>
+
+    <element name="RouteRegistration" type="routeReg:RouteRegistrationType"/>
+    <complexType name="RouteRegistrationType">
+        <sequence>
+            <element ref="route:Route" />
+            <element ref="usr:User" />
+            <element ref="vhl:Vehicle"/>
+            <element type="unsignedShort" name="noOfSeats"/>
+            <choice>
+                <element ref="singleTrip:SingleTrip"/>
+                <element ref="regularTrip:RegularTrip"/>
+            </choice>
+            <element ref="commons:price"/>
+            <element type="string" name="additionalInfo"/>
+            <element type="commons:routeRegOptionFlags" name="option" maxOccurs="unbounded"/>
+        </sequence>
+        <attribute type="unsignedLong" name="id" form="qualified"/>
+    </complexType>
+</schema>

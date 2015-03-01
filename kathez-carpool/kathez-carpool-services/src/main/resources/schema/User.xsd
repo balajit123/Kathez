@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:usr="http://www.kathez.com/User"
+        xmlns:commons="http://www.kathez.com/Commons"
+        xmlns:addr="http://www.kathez.com/Address"
+        targetNamespace="http://www.kathez.com/User">
+
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+    <import namespace="http://www.kathez.com/Address" schemaLocation="Address.xsd"/>
+
+    <element name="User" type="usr:UserType"/>
+    <complexType name="UserType">
+        <sequence>
+            <element type="string" name="firstName" minOccurs="0"/>
+            <element type="string" name="lastName" minOccurs="0"/>
+            <element type="commons:Gender" name="gender"/>
+            <element type="commons:email" name="email"/>
+            <element type="commons:MobileNumber" name="contactNumber"/>
+            <element type="commons:MobileNumber" name="alternateContactNumber" minOccurs="0"/>
+            <element ref="addr:Address"/>
+        </sequence>
+        <attribute type="unsignedLong" name="id" form="qualified"/>
+    </complexType>
+</schema>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:addr="http://www.kathez.com/Address"
+        xmlns:commons="http://www.kathez.com/Commons"
+        targetNamespace="http://www.kathez.com/Address">
+
+  <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+
+  <element name="Address" type="addr:AddressType"/>
+  <complexType name="AddressType">
+    <sequence>
+      <element type="string" name="doorNo" minOccurs="0"/>
+      <element type="string" name="street" minOccurs="0"/>
+      <element type="string" name="area" minOccurs="0"/>
+      <element type="string" name="subArea" minOccurs="0"/>
+      <element type="commons:City" name="city">
+      </element>
+    </sequence>
+    <attribute type="unsignedLong" name="id" form="qualified"/>
+  </complexType>
+</schema>

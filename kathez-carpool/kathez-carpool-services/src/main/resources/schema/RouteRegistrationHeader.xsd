@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:routeReg="http://www.kathez.com/RouteRegistrationHeader"
+        targetNamespace="http://www.kathez.com/RouteRegistrationHeader">
+
+    <element name="RouteRegistration" type="routeReg:RouteRegistrationHeaderType"/>
+    <complexType name="RouteRegistrationHeaderType">
+        <attribute type="unsignedLong" name="id" form="qualified"/>
+    </complexType>
+</schema>

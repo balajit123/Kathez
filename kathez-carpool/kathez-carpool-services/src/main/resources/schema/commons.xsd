@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:commons="http://www.kathez.com/Commons"
+        targetNamespace="http://www.kathez.com/Commons">
+
+    <simpleType name="Gender">
+        <restriction base="string">
+            <enumeration value="Male"/>
+            <enumeration value="Female" />
+            <enumeration value="Third Gender"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="City">
+        <restriction base="string">
+            <enumeration value="Chennai"/>
+            <enumeration value="Bangalore" />
+            <enumeration value="Mumbai"/>
+            <enumeration value="Delhi"/>
+            <enumeration value="Kolkatta"/>
+            <enumeration value="Hyderabad"/>
+            <enumeration value="Edinburgh"/>
+            <enumeration value="London"/>
+        </restriction>
+    </simpleType>
+    
+    <simpleType name="MobileNumber">
+        <restriction base="string">
+            <pattern value="\d{10}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="email">
+        <restriction base="string">
+            <pattern value="[^@]+@[^\.]+\..+|"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="vehicleType">
+        <restriction base="string">
+            <enumeration value="Car"/>
+            <enumeration value="Taxi" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="tripType">
+        <restriction base="string">
+            <enumeration value="One Time"/>
+            <enumeration value="Regular" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="weekDays">
+        <restriction base="string">
+            <enumeration value="Sunday"/>
+            <enumeration value="Monday" />
+            <enumeration value="Tuesday" />
+            <enumeration value="Wednesday"/>
+            <enumeration value="Thursday" />
+            <enumeration value="Friday" />
+            <enumeration value="Saturday" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="paymentFrequency">
+        <restriction base="string">
+            <enumeration value="Daily"/>
+            <enumeration value="Weekly" />
+            <enumeration value="Monthly" />
+        </restriction>
+    </simpleType>
+
+    <simpleType name="routeRegOptionFlags">
+        <restriction base="string">
+            <enumeration value="NOTIFY_ONLY_TO_SAME_GENDER"/>
+            <enumeration value="HIDE_MOBILE_NUMBER"/>
+            <enumeration value="HIDE_EMAIL"/>
+            <enumeration value="ALERT_WHEN_REQUEST_REGISTERED"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="currency">
+        <restriction base="string">
+            <enumeration value="INR"/>
+            <enumeration value="USD"/>
+            <enumeration value="GBP"/>
+            <enumeration value="SGD"/>
+        </restriction>
+    </simpleType>
+
+    <element name="price" type="commons:priceType"/>
+    <complexType name="priceType">
+        <sequence>
+            <element name="amount" type="double" form="qualified"/>
+        </sequence>
+        <attribute type="commons:currency" name="ccy" form="qualified"/>
+    </complexType>
+</schema>

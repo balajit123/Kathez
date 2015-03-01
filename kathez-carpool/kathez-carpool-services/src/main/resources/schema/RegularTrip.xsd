@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:regularTrip="http://www.kathez.com/RegularTrip"
+        xmlns:commons="http://www.kathez.com/Commons"
+        targetNamespace="http://www.kathez.com/RegularTrip">
+
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+
+    <element name="RegularTrip" type="regularTrip:RegularTripType"/>
+    <complexType name="RegularTripType">
+        <sequence>
+            <element type="commons:tripType" name="tripType" fixed="Regular"/>
+            <element type="commons:weekDays" name="weeklyFrequency" maxOccurs="7"/>
+            <element type="date" name="startDate"/>
+            <element type="date" name="endDate"/>
+            <element type="time" name="startTime"/>
+            <element type="time" name="returnStartTime" minOccurs="0"/>
+            <element type="unsignedShort" name="startTimeFlexiMins" minOccurs="0"/>
+            <element type="unsignedShort" name="returnStartTimeFlexiMins" minOccurs="0"/>
+            <element type="commons:paymentFrequency" name="paymentFrequency" minOccurs="0"/>
+        </sequence>
+    </complexType>
+</schema>

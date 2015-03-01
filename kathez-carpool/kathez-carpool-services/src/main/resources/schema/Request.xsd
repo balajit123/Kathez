@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:request="http://www.kathez.com/Request"
+        xmlns:routeRegHeader="http://www.kathez.com/RouteRegistrationHeader"
+        xmlns:usr="http://www.kathez.com/User"
+        xmlns:singleTrip="http://www.kathez.com/SingleTrip"
+        xmlns:regularTrip="http://www.kathez.com/RegularTrip"
+        xmlns:commons="http://www.kathez.com/Commons"
+        targetNamespace="http://www.kathez.com/Request">
+
+    <import namespace="http://www.kathez.com/RouteRegistrationHeader" schemaLocation="RouteRegistrationHeader.xsd"/>
+    <import namespace="http://www.kathez.com/User" schemaLocation="User.xsd"/>
+    <import namespace="http://www.kathez.com/SingleTrip" schemaLocation="SingleTrip.xsd"/>
+    <import namespace="http://www.kathez.com/RegularTrip" schemaLocation="RegularTrip.xsd"/>
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+
+    <element name="Request" type="request:RequestType"/>
+    <complexType name="RequestType">
+        <sequence>
+            <element ref="routeRegHeader:RouteRegistration" />
+            <element ref="usr:User"/>
+            <choice>
+                <element name="requestForSingleTrip">
+                    <complexType>
+                        <sequence>
+                            <element ref="singleTrip:SingleTrip" />
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="requestForRegularTrip">
+                    <complexType>
+                        <sequence>
+                            <element ref="regularTrip:RegularTrip" />
+                        </sequence>
+                    </complexType>
+                </element>
+            </choice>
+            <element type="string" name="from"/>
+            <element type="string" name="to"/>
+            <element type="unsignedShort" name="requiredNoOfSeats"/>
+            <element ref="commons:price"/>
+        </sequence>
+        <attribute type="unsignedLong" name="id" form="qualified"/>
+    </complexType>
+</schema>

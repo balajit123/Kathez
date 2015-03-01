@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:request="http://www.kathez.com/Request"
+        xmlns:response="http://www.kathez.com/Response"
+        targetNamespace="http://www.kathez.com/Response">
+
+    <import namespace="http://www.kathez.com/Request" schemaLocation="Request.xsd"/>
+
+    <element name="Response" type="response:ResponseType"/>
+    <complexType name="ResponseType">
+        <sequence>
+            <element ref="request:Request" />
+            <element name="decision">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Accepted"/>
+                        <enumeration value="Rejected"/>
+                        <enumeration value="Negotiated"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element type="string" name="additionalInfo"/>
+        </sequence>
+        <attribute type="unsignedLong" name="id" form="qualified"/>
+    </complexType>
+</schema>

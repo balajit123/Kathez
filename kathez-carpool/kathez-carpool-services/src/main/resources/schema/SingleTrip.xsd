@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:singlTrip="http://www.kathez.com/SingleTrip"
+        xmlns:commons="http://www.kathez.com/Commons"
+        targetNamespace="http://www.kathez.com/SingleTrip">
+
+    <import namespace="http://www.kathez.com/Commons" schemaLocation="commons.xsd"/>
+
+    <element name="SingleTrip" type="singlTrip:SingleTripType"/>
+    <complexType name="SingleTripType">
+        <sequence>
+            <element type="commons:tripType" name="tripType" fixed="One Time"/>
+            <element type="dateTime" name="startDateTime"/>
+            <element type="dateTime" name="returnStartDateTime" minOccurs="0"/>
+            <element type="unsignedShort" name="startTimeFlexiMins" minOccurs="0"/>
+            <element type="unsignedShort" name="returnStartTimeFlexiMins" minOccurs="0"/>
+        </sequence>
+    </complexType>
+</schema>
